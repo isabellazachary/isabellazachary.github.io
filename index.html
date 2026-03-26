@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isabella Zachary — Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #00ff8c;
+      --green-dim: #00ff8c22;
+      --green-mid: #00ff8c44;
+      --bg: #0a0a0f;
+      --bg-card: #0d0d14;
+      --bg-skill: #0d1a12;
+      --border: #1a2a1a;
+      --border-skill: #1a3a22;
+      --text: #e0e0e0;
+      --text-muted: #a0b0a8;
+      --text-dim: #5a7a6a;
+      --text-dark: #4a6a5a;
+      --text-darker: #3a5a4a;
+      --text-darkest: #2a4a3a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #1a3a22; border-radius: 3px; }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      background: rgba(10,10,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      color: var(--green);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-dark);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: color 0.15s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      padding: 8rem 2rem 4rem;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image:
+        linear-gradient(rgba(0,255,140,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,140,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,255,140,0.06) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 700px; }
+
+    .terminal-tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--green);
+      letter-spacing: 2px;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .terminal-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: blink 1.2s infinite;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      color: #f0f0f0;
+      letter-spacing: -2px;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 span { color: var(--green); }
+
+    .hero-subtitle {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: #7a9a8a;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-bio {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .contact-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .chip {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      padding: 5px 10px;
+      background: var(--bg-skill);
+      border: 1px solid var(--border-skill);
+      border-radius: 3px;
+      color: #7aaa8a;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .chip:hover { border-color: var(--green); color: var(--green); }
+
+    .cta-row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    .btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      padding: 12px 22px;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.15s;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary { background: var(--green); color: #000; font-weight: 700; }
+    .btn-primary:hover { background: #00e07a; transform: translateY(-2px); }
+    .btn-outline { background: transparent; color: var(--green); border: 1px solid var(--green-mid); }
+    .btn-outline:hover { border-color: var(--green); background: var(--green-dim); }
+
+    /* STATS */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .stat-cell { background: var(--bg); padding: 1.25rem 1rem; text-align: center; }
+    .stat-num { font-family: 'Space Mono', monospace; font-size: 22px; font-weight: 700; color: var(--green); }
+    .stat-label { font-size: 10px; color: var(--text-dark); letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
+
+    /* SECTIONS */
+    .section { padding: 4rem 2rem; border-bottom: 1px solid #111a11; max-width: 1100px; margin: 0 auto; }
+
+    .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 2rem; }
+    .section-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; color: var(--green); text-transform: uppercase; white-space: nowrap; }
+    .section-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* PROJECTS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      padding: 1.5rem;
+      position: relative;
+      transition: background 0.15s;
+    }
+
+    .project-card:hover { background: #121218; }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: var(--green-dim);
+      transition: background 0.15s;
+    }
+
+    .project-card:hover::before { background: var(--green); }
+
+    .project-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-featured { background: #0a2a15; color: var(--green); border: 1px solid rgba(0,255,140,0.2); }
+    .badge-lang { background: var(--bg-skill); color: #5aaa7a; border: 1px solid var(--border-skill); }
+
+    .project-name { font-size: 15px; font-weight: 700; color: #e0e8e4; margin-bottom: 0.4rem; }
+    .project-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+    .tag {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      padding: 3px 7px;
+      background: #0a1510;
+      border: 1px solid #1a2a1a;
+      border-radius: 2px;
+      color: #4a8a5a;
+    }
+
+    /* SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+
+    .skill-pill {
+      background: var(--bg-skill);
+      border: 1px solid var(--border-skill);
+      border-radius: 4px;
+      padding: 9px 14px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: #7aaa8a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color 0.15s;
+    }
+
+    .skill-pill:hover { border-color: var(--green); }
+    .skill-dot { width: 5px; height: 5px; background: var(--green); border-radius: 50%; flex-shrink: 0; }
+
+    /* EDUCATION */
+    .edu-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .edu-item {
+      background: var(--bg-card);
+      border: 1px solid #111a14;
+      border-radius: 4px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      transition: border-color 0.15s;
+    }
+
+    .edu-item:hover { border-color: #1a3a22; }
+    .edu-name { font-size: 14px; font-weight: 700; color: #c0d8ca; }
+    .edu-deg { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
+    .edu-date { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--text-darker); }
+
+    /* CONTACT */
+    .contact-section { padding: 4rem 2rem; text-align: center; max-width: 600px; margin: 0 auto; }
+    .contact-title { font-size: 2rem; font-weight: 800; color: #e0e8e4; margin-bottom: 0.5rem; }
+    .contact-sub { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--text-dark); margin-bottom: 2rem; }
+    .social-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+    .social-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      padding: 10px 18px;
+      background: var(--bg-skill);
+      border: 1px solid var(--border-skill);
+      border-radius: 4px;
+      color: #7aaa8a;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: all 0.15s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .social-btn:hover { border-color: var(--green); color: var(--green); background: #0a1a10; }
+
+    /* FOOTER */
+    footer {
+      padding: 1.5rem 2rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      color: var(--text-darkest);
+      text-align: center;
+      letter-spacing: 1px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* FADE IN ANIMATION */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content { animation: fadeUp 0.7s ease both; }
+
+    /* RESPONSIVE */
+    @media (max-width: 600px) {
+      nav { padding: 0.75rem 1rem; }
+      .nav-links { gap: 14px; }
+      .hero { padding: 6rem 1rem 3rem; }
+      .section { padding: 2.5rem 1rem; }
+      .contact-section { padding: 2.5rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="#">IZ.dev</a>
+    <ul class="nav-links">
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#stack">stack</a></li>
+      <li><a href="#education">education</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-content">
+      <div class="terminal-tag">OPEN TO OPPORTUNITIES</div>
+      <h1>Isabella<br><span>Zachary.</span></h1>
+      <div class="hero-subtitle">// full-stack developer · Malta · final year @ MCAST</div>
+      <p class="hero-bio">
+        I build fast and ship often. From mobile apps with AI integration to 3D game worlds —
+        I work across the full stack and love turning ideas into things that actually run in production.
+      </p>
+      <div class="contact-chips">
+        <a class="chip" href="mailto:zacharyisabella94@gmail.com">zacharyisabella94@gmail.com</a>
+        <a class="chip" href="tel:+35699009391">+356 99009391</a>
+        <a class="chip" href="https://github.com/isabellazachary" target="_blank">github.com/isabellazachary</a>
+        <span class="chip">Malta 🇲🇹</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="mailto:zacharyisabella94@gmail.com">Get in touch</a>
+        <a class="btn btn-outline" href="https://github.com/isabellazachary" target="_blank">GitHub profile ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat-cell"><div class="stat-num">6+</div><div class="stat-label">Projects</div></div>
+    <div class="stat-cell"><div class="stat-num">14</div><div class="stat-label">Languages</div></div>
+    <div class="stat-cell"><div class="stat-num">iOS + Android</div><div class="stat-label">Mobile</div></div>
+    <div class="stat-cell"><div class="stat-num">3+</div><div class="stat-label">Years learning</div></div>
+  </div>
+
+  <div style="border-bottom: 1px solid #111a11;">
+    <section class="section" id="projects">
+      <div class="section-header">
+        <div class="section-label">01 / projects</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card">
+          <span class="project-badge badge-featured">FEATURED · IN PROGRESS</span>
+          <div class="project-name">Pulse</div>
+          <div class="project-desc">Cross-platform mobile app connecting students with tutors. Features an AI study assistant, smart scheduler, XP system, and grade tracker. Solo-built and deployed on iOS & Android.</div>
+          <div class="project-tags">
+            <span class="tag">React</span><span class="tag">TypeScript</span><span class="tag">Ionic</span>
+            <span class="tag">Capacitor</span><span class="tag">Firebase</span><span class="tag">AI API</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <span class="project-badge badge-lang">Unreal Engine 5</span>
+          <div class="project-name">UE5 3D Game</div>
+          <div class="project-desc">Ongoing personal 3D game project exploring visual scripting, level design, and real-time rendering in Unreal Engine 5.</div>
+          <div class="project-tags"><span class="tag">UE5</span><span class="tag">Visual Scripting</span><span class="tag">Level Design</span></div>
+        </div>
+        <div class="project-card">
+          <span class="project-badge badge-lang">HTML · CSS · JS</span>
+          <div class="project-name">Phone Repair Site</div>
+          <div class="project-desc">Responsive website for a phone repair & electronics business — covering phones, laptops and gadgets with a clean, accessible layout.</div>
+          <div class="project-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div>
+        </div>
+        <div class="project-card">
+          <span class="project-badge badge-lang">React</span>
+          <div class="project-name">Bakery Website</div>
+          <div class="project-desc">Component-based bakery site — first deep dive into modern React architecture and reusable UI components.</div>
+          <div class="project-tags"><span class="tag">React</span><span class="tag">Components</span></div>
+        </div>
+        <div class="project-card">
+          <span class="project-badge badge-lang">Unity · C#</span>
+          <div class="project-name">2D Unity Game</div>
+          <div class="project-desc">Full 2D game with player mechanics, collision detection, and scene management built from scratch in Unity.</div>
+          <div class="project-tags"><span class="tag">Unity</span><span class="tag">C#</span><span class="tag">Game Dev</span></div>
+        </div>
+        <div class="project-card">
+          <span class="project-badge badge-lang">Roblox · Lua</span>
+          <div class="project-name">Roblox Multiplayer Game</div>
+          <div class="project-desc">Designed and published a multiplayer game on Roblox Studio, learning game logic and Lua scripting end-to-end.</div>
+          <div class="project-tags"><span class="tag">Roblox Studio</span><span class="tag">Lua</span><span class="tag">Multiplayer</span></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div style="border-bottom: 1px solid #111a11;">
+    <section class="section" id="stack">
+      <div class="section-header">
+        <div class="section-label">02 / stack</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-pill"><span class="skill-dot"></span>TypeScript</div>
+        <div class="skill-pill"><span class="skill-dot"></span>JavaScript</div>
+        <div class="skill-pill"><span class="skill-dot"></span>React</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Ionic + Capacitor</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Node.js</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Firebase</div>
+        <div class="skill-pill"><span class="skill-dot"></span>MySQL</div>
+        <div class="skill-pill"><span class="skill-dot"></span>PHP</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Python</div>
+        <div class="skill-pill"><span class="skill-dot"></span>C# / Unity</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Unreal Engine 5</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Swift / Xcode</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Java</div>
+        <div class="skill-pill"><span class="skill-dot"></span>Git & GitHub</div>
+      </div>
+    </section>
+  </div>
+
+  <div style="border-bottom: 1px solid #111a11;">
+    <section class="section" id="education">
+      <div class="section-header">
+        <div class="section-label">03 / education</div>
+        <div class="section-line"></div>
+      </div>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">MCAST</div>
+            <div class="edu-deg">Diploma in Software Development (Final Year)</div>
+          </div>
+          <div class="edu-date">Jan 2022 — Present</div>
+        </div>
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">NIIT</div>
+            <div class="edu-deg">Diploma in Web Development</div>
+          </div>
+          <div class="edu-date">Feb 2022 — Oct 2022</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="contact">
+    <div class="contact-section">
+      <div class="section-header" style="justify-content: center; margin-bottom: 1rem;">
+        <div class="section-label">04 / contact</div>
+      </div>
+      <div class="contact-title">Let's build something.</div>
+      <div class="contact-sub">// open to work — drop a line</div>
+      <div class="social-row">
+        <a class="social-btn" href="https://github.com/isabellazachary" target="_blank">github</a>
+        <a class="social-btn" href="https://linkedin.com/in/ZainabZachary" target="_blank">linkedin</a>
+        <a class="social-btn" href="mailto:zacharyisabella94@gmail.com">email</a>
+        <a class="social-btn" href="tel:+35699009391">+356 99009391</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &lt;/&gt; isabella zachary · software developer · malta · built with code + coffee
+  </footer>
+
+</body>
+</html>
