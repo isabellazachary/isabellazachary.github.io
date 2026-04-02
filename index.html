@@ -3,16 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Isabella Zachary — Software Developer</title>
+  <title>Isabella Zainab Zachary — Software Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      /* PREMIUM EMERALD PALETTE */
-      --primary: #10b981; /* Professional Emerald */
+      --primary: #10b981; 
       --primary-glow: rgba(16, 185, 129, 0.15);
-      --bg: #020617; /* Deep Navy Black */
+      --bg: #020617; 
       --bg-card: #0f172a;
       --border: rgba(255, 255, 255, 0.05);
       --text: #f1f5f9;
@@ -41,6 +40,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); border-color: var(--primary); }
+      50% { box-shadow: 0 0 15px 5px rgba(16, 185, 129, 0.1); border-color: #34d399; }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); border-color: var(--primary); }
+    }
+
     .reveal { animation: reveal 0.8s ease forwards; }
 
     /* NAV */
@@ -62,7 +67,7 @@
       font-weight: 800;
       color: var(--primary);
       text-decoration: none;
-      letter-spacing: -1px;
+      letter-spacing: 1px;
     }
 
     .nav-links { display: flex; gap: 2rem; list-style: none; }
@@ -98,20 +103,31 @@
       display: inline-block;
       margin-bottom: 1.5rem;
       border-radius: 2px;
+      animation: pulse-glow 2s infinite ease-in-out;
     }
 
     .hero h1 {
-      font-size: clamp(3.5rem, 10vw, 7rem);
+      font-size: clamp(3rem, 10vw, 7rem);
       font-weight: 800;
       line-height: 0.85;
       letter-spacing: -4px;
-      margin-bottom: 2rem;
+      margin-bottom: 0.5rem;
     }
 
     .hero h1 span { color: var(--primary); }
 
+    .hero-subtitle {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--text);
+      display: block;
+      margin-bottom: 1.5rem;
+      opacity: 0.9;
+      letter-spacing: 1px;
+    }
+
     .hero-bio {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: var(--text-muted);
       max-width: 600px;
       margin-bottom: 2.5rem;
@@ -127,6 +143,7 @@
       font-weight: 700;
       transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
       border-radius: 4px;
+      text-align: center;
     }
 
     .btn-primary { background: var(--primary); color: #000; }
@@ -151,6 +168,9 @@
       padding: 2.5rem;
       transition: 0.4s;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card:hover { border-color: var(--primary); transform: translateY(-5px); }
@@ -163,6 +183,7 @@
       padding: 2px 8px;
       margin-bottom: 1rem;
       display: inline-block;
+      text-transform: uppercase;
     }
 
     .card-title { font-size: 1.5rem; margin-bottom: 0.5rem; }
@@ -174,12 +195,13 @@
         text-decoration: none;
         font-size: 12px;
         font-weight: 700;
+        margin-top: auto;
     }
 
     /* STACK */
     .stack-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
       gap: 10px;
     }
 
@@ -203,24 +225,42 @@
       border-bottom: 1px solid var(--border);
       background: rgba(255,255,255,0.01);
     }
-    .stat-box { padding: 3rem; text-align: center; border-right: 1px solid var(--border); }
+    .stat-box { padding: 3rem 1rem; text-align: center; border-right: 1px solid var(--border); }
     .stat-val { font-size: 2.5rem; font-weight: 800; color: var(--primary); display: block; }
     .stat-lab { font-family: 'Space Mono'; font-size: 10px; color: var(--text-dim); text-transform: uppercase; }
 
     /* FOOTER */
     footer { padding: 4rem 5%; text-align: center; border-top: 1px solid var(--border); color: var(--text-dim); font-family: 'Space Mono'; font-size: 11px; }
 
-    @media (max-width: 768px) {
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 992px) {
       .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat-box:nth-child(2) { border-right: none; }
+      .stat-box:nth-child(1), .stat-box:nth-child(2) { border-bottom: 1px solid var(--border); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 5%; }
       .nav-links { display: none; }
-      .hero h1 { font-size: 4rem; }
+      .hero { padding-top: 8rem; }
+      .hero h1 { font-size: 3.5rem; letter-spacing: -2px; }
+      .section-title { font-size: 2rem; }
+      .btn { width: 100%; }
+      .stat-box { padding: 2rem 1rem; }
+      .stat-val { font-size: 2rem; }
+    }
+
+    @media (max-width: 480px) {
+      .stats-bar { grid-template-columns: 1fr; }
+      .stat-box { border-right: none; border-bottom: 1px solid var(--border); }
+      .hero h1 { font-size: 2.8rem; }
     }
   </style>
 </head>
 <body>
 
   <nav>
-    <a class="nav-logo" href="#">ISABELLA.Z</a>
+    <a class="nav-logo" href="#">I.Z</a>
     <ul class="nav-links">
       <li><a href="#projects">Portfolio</a></li>
       <li><a href="#stack">Toolkit</a></li>
@@ -233,6 +273,7 @@
     <div class="hero-content reveal">
       <span class="hero-tag">OPEN FOR COLLABORATION 2026</span>
       <h1>Creative<br><span>Software Eng.</span></h1>
+      <span class="hero-subtitle">Isabella Zainab Zachary</span>
       <p class="hero-bio">
         I build high-performance applications and immersive digital experiences. Currently a final-year developer at MCAST, Malta.
       </p>
@@ -243,8 +284,8 @@
     </div>
   </header>
 
-  <div class="stats-bar">
-    <div class="stat-box"><span class="stat-val">06+</span><span class="stat-lab">Live Projects</span></div>
+  <div class="stats-bar reveal">
+    <div class="stat-box"><span class="stat-val">07+</span><span class="stat-lab">Live Projects</span></div>
     <div class="stat-box"><span class="stat-val">14</span><span class="stat-lab">Tech Stacks</span></div>
     <div class="stat-box"><span class="stat-val">iOS</span><span class="stat-lab">Deployment</span></div>
     <div class="stat-box" style="border:none;"><span class="stat-val">3yr</span><span class="stat-lab">Experience</span></div>
@@ -260,8 +301,15 @@
       <div class="card reveal">
         <span class="badge">FEATURED PROJECT</span>
         <h3 class="card-title">Pulse — Study Smarter</h3>
-        <p class="card-desc">Cross-platform mobile app connecting students with tutors. Features an AI study assistant, smart scheduler, and XP system. Solo-built and deployed.</p>
+        <p class="card-desc">Cross-platform mobile app connecting students with tutors. Features an AI study assistant, smart scheduler, and XP system.</p>
         <a href="https://build-with-pulse.netlify.app/" target="_blank" class="project-link">View Live Project →</a>
+      </div>
+
+      <div class="card reveal">
+        <span class="badge">ECOMMERCE</span>
+        <h3 class="card-title">Elite Storefront</h3>
+        <p class="card-desc">Modern Ecommerce platform with integrated cart functionality and secure checkout simulation.</p>
+        <a href="https://github.com/isabellazachary" target="_blank" class="project-link">View Repository →</a>
       </div>
 
       <div class="card reveal">
@@ -279,21 +327,24 @@
       </div>
 
       <div class="card reveal">
-          <span class="badge">CLIENT WORK</span>
+          <span class="badge">JAVASCRIPT</span>
           <h3 class="card-title">Phone Repair Site</h3>
           <p class="card-desc">Full responsive site for electronics repair business. SEO optimized and accessibility focused.</p>
+          <a href="https://github.com/isabellazachary" target="_blank" class="project-link">View Repository →</a>
       </div>
 
       <div class="card reveal">
           <span class="badge">REACT</span>
           <h3 class="card-title">Bakery Website</h3>
           <p class="card-desc">Component-based React application focusing on reusable UI architecture.</p>
+          <a href="https://github.com/isabellazachary" target="_blank" class="project-link">View Repository →</a>
       </div>
 
       <div class="card reveal">
           <span class="badge">GAME DEV</span>
           <h3 class="card-title">Multiplayer Simulations</h3>
           <p class="card-desc">Lua and C# based game mechanics across Roblox Studio and Unity 2D engines.</p>
+          <a href="https://github.com/isabellazachary" target="_blank" class="project-link">View Repository →</a>
       </div>
     </div>
   </section>
@@ -328,13 +379,13 @@
     </div>
     <div class="reveal">
         <div class="card" style="margin-bottom: 1rem; padding: 1.5rem;">
-            <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
                 <strong>MCAST — Software Development</strong>
                 <span style="font-family: 'Space Mono'; font-size: 12px; color: var(--primary);">2023 — Present</span>
             </div>
         </div>
         <div class="card" style="padding: 1.5rem;">
-            <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
                 <strong>NIIT — Diploma in Web Development</strong>
                 <span style="font-family: 'Space Mono'; font-size: 12px; color: var(--primary);">2022 — 2023</span>
             </div>
@@ -344,17 +395,17 @@
 
   <section class="section" id="contact" style="text-align: center;">
     <div class="reveal">
-        <h2 style="font-size: 4rem; letter-spacing: -3px; margin-bottom: 2rem;">Ready to build?</h2>
+        <h2 style="font-size: clamp(2.5rem, 8vw, 3rem); letter-spacing: -2px; margin-bottom: 2rem;">Ready to build?</h2>
         <div class="btn-group" style="justify-content: center;">
             <a href="mailto:zacharyisabella94@gmail.com" class="btn btn-primary">Email Me</a>
             <a href="tel:+35699009391" class="btn btn-outline">+356 99009391</a>
-            <a href="https://linkedin.com/in/ZainabZachary" class="btn btn-outline">LinkedIn</a>
+            <a href="https://linkedin.com/in/ZainabZachary" class="btn btn-outline" target="_blank">LinkedIn</a>
         </div>
     </div>
   </section>
 
   <footer>
-    &copy; 2026 Isabella Zachary &middot; Built with Passion 
+    &copy; 2026 Isabella Zainab Zachary &middot; Built with Passion
   </footer>
 
 </body>
