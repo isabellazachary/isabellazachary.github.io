@@ -103,7 +103,8 @@
     .where span { display: inline-flex; align-items: center; gap: 6px; }
     .photo { position: relative; }
     .photo img { width: 100%; height: auto; max-width: 190px; margin-left: auto; aspect-ratio: 1; object-fit: cover; border-radius: 26px; filter: saturate(1.02); }
-    .photo .tag { position: absolute; left: -14px; bottom: 22px; background: var(--ink); color: var(--paper); padding: 8px 12px; border-radius: 10px; }
+    .photo { max-width: 190px; margin-left: auto; }
+    .photo .tag { position: absolute; left: -8px; bottom: 12px; background: var(--ink); color: var(--paper); padding: 4px 8px; border-radius: 7px; font-size: 10.5px; letter-spacing: .02em; white-space: nowrap; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 26px; }
     .chips span { padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); }
     .hero > div { min-width: 0; }
