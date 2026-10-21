@@ -108,6 +108,22 @@
     .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 26px; }
     .chips span { padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); }
     .hero > div { min-width: 0; }
+    .status .short { display: none; }
+    @media (max-width: 860px) {
+      .hero { display: flex; flex-direction: column; align-items: stretch; }
+      .hero .photo { order: -1; margin: 0; max-width: none; display: flex; align-items: center; gap: 12px; }
+      .hero .photo img { width: 76px; height: 76px; max-width: 76px; border-radius: 22px; margin: 0; animation: none; }
+      .hero .photo .tag { position: static; font-size: 12px; padding: 6px 10px; }
+      .hero .btns .btn { flex: 1; justify-content: center; }
+      .status .long { display: none; } .status .short { display: inline; }
+      .where { gap: 6px 14px; }
+      .ask-btn { padding: 6px; gap: 0; }
+      .ask-btn > span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+      .ask-btn img { width: 40px; height: 40px; }
+      .facts .fact .k { font-size: 21px; }
+      .proj .shots img { width: 96px; }
+      .proj .wide img { max-width: 200px; }
+    }
     @media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); gap: 32px; padding-top: 44px; } .photo { max-width: 160px; } .photo img { margin-left: 0; } }
 
     /* numbers strip */
@@ -408,18 +424,17 @@
 <main id="main" class="wrap">
   <header class="hero" id="top">
     <div>
-      <div class="status mono"><b></b>Open to full-stack and mobile roles · open to relocation</div>
+      <div class="status mono"><b></b><span class="long">Open to full-stack and mobile roles · open to relocation</span><span class="short">Open to roles · open to relocation</span></div>
       <h1><span class="ln"><span>I build products</span></span> <span class="ln"><span>people use,</span></span> <span class="ln"><span><em class="s ul">end to end.<svg viewBox="0 0 300 22" preserveAspectRatio="none" aria-hidden="true"><path d="M3 15 C 60 5, 120 4, 170 9 S 260 18, 297 7" /></svg></em></span></span></h1>
       <p class="lede">I'm Isabella Zainab Zachary, a full-stack developer and the founder of <strong>Kiakia</strong>, a delivery platform I designed and built alone: two native apps, a backend, live tracking and an admin dashboard.</p>
       <div class="btns">
         <a class="btn a" href="https://github.com/isabellazachary" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.6 22.4c.6.1.8-.3.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 0 1 5.8 0c2.2-1.5 3.2-1.2 3.2-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A11.5 11.5 0 0 0 12 .5z"/></svg>GitHub</a>
-        <a class="btn book" href="mailto:zacharyisabella94@gmail.com?subject=Let%27s%20book%20a%20call" target="_blank" rel="noopener">Book a call</a>
         <a class="btn li" href="https://www.linkedin.com/in/isabella-zachary-929b161a6/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>LinkedIn</a>
       </div>
       <div class="where mono">
         <span>Malta</span>
         <span id="clock" aria-label="My local time"></span>
-        <span>Software Development, MCAST</span>
+        <span>Advanced Diploma in Software Development, MCAST</span>
       </div>
       <div class="marquee mono" aria-label="Tools I use: TypeScript, React, React Native, SwiftUI, Node.js, PostgreSQL, Supabase, Expo, Vercel, Google Maps, Stripe, Paystack">
         <div class="track" aria-hidden="true"><span>TypeScript</span><span>React</span><span>React Native</span><span>SwiftUI</span><span>Node.js</span><span>PostgreSQL</span><span>Supabase</span><span>Expo</span><span>Vercel</span><span>Google Maps</span><span>Stripe</span><span>Paystack</span><span>TypeScript</span><span>React</span><span>React Native</span><span>SwiftUI</span><span>Node.js</span><span>PostgreSQL</span><span>Supabase</span><span>Expo</span><span>Vercel</span><span>Google Maps</span><span>Stripe</span><span>Paystack</span></div>
@@ -592,7 +607,7 @@
       <div>
         <h2 class="rv">Where I <em class="s">learned</em></h2>
         <div class="edu rv">
-          <div><span><b>Diploma in Software Development</b><br />MCAST, Malta</span><span class="mono">2024 – Present</span></div>
+          <div><span><b>Advanced Diploma in Software Development</b><br />MCAST, Malta</span><span class="mono">2024 – Present</span></div>
           <div><span><b>Diploma in Web Development</b><br />NIIT</span><span class="mono">Feb 2023 – Jun 2023</span></div>
         </div>
       </div>
