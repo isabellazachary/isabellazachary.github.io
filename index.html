@@ -24,7 +24,7 @@
       --surface: #fbfaf8;
       --ink: #141312;
       --muted: #67625c;
-      --faint: #98928a;
+      --faint: #6f6b65;
       --line: #e2dfd9;
       --accent: #3f5573;
       --accent-soft: #e2e7ee;
@@ -36,12 +36,12 @@
     }
     @media (prefers-color-scheme: dark) {
       :root:not([data-theme="light"]) {
-        --paper: #121110; --surface: #1a1918; --ink: #f2efea; --muted: #a8a29a; --faint: #77716a; --line: #2b2927;
+        --paper: #121110; --surface: #1a1918; --ink: #f2efea; --muted: #a8a29a; --faint: #87827c; --line: #2b2927;
         --accent: #a9b8cf; --accent-soft: #212833; --on-accent: #10151c; color-scheme: dark;
       }
     }
     :root[data-theme="dark"] {
-      --paper: #121110; --surface: #1a1918; --ink: #f2efea; --muted: #a8a29a; --faint: #77716a; --line: #2b2927;
+      --paper: #121110; --surface: #1a1918; --ink: #f2efea; --muted: #a8a29a; --faint: #87827c; --line: #2b2927;
       --accent: #a9b8cf; --accent-soft: #212833; --on-accent: #10151c; color-scheme: dark;
     }
 
@@ -192,7 +192,7 @@
     /* stack */
     .stack { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
     .col { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; }
-    .col h4 { color: var(--accent); font-weight: 500; }
+    .col h3 { color: var(--accent); font-weight: 500; }
     .col ul { list-style: none; margin-top: 10px; display: grid; gap: 6px; }
     @media (max-width: 860px) { .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
@@ -247,7 +247,7 @@
     .proj:hover .wide img { transform: translateY(-4px); }
     @media (prefers-reduced-motion: reduce) {
       .js h1 .ln > span, .js em.ul path, .js .hero .status, .js .hero .lede, .js .hero .btns, .js .hero .where, .js .hero .marquee, .js .hero .photo { animation: none; opacity: 1; transform: none; stroke-dashoffset: 0; }
-      .marquee .track, .photo img { animation: none; }
+      .marquee .track, .photo img, .typing b { animation: none; }
     }
 
     /* reveal on scroll: visible by default, animated only when the script runs */
@@ -596,10 +596,10 @@
       <div>
         <h2 class="rv">What I build <em class="s">with</em></h2>
         <div class="stack rv">
-          <div class="col"><h4 class="mono">Frontend</h4><ul><li>TypeScript</li><li>React</li><li>Vite</li><li>HTML &amp; CSS</li><li>Tailwind</li></ul></div>
-          <div class="col"><h4 class="mono">Mobile</h4><ul><li>React Native / Expo</li><li>Swift / SwiftUI</li><li>Flutter / Dart</li><li>Live Activities</li><li>App signing &amp; release</li></ul></div>
-          <div class="col"><h4 class="mono">Backend &amp; data</h4><ul><li>Node.js</li><li>PostgreSQL</li><li>Supabase</li><li>REST APIs</li><li>Vercel &amp; Netlify</li></ul></div>
-          <div class="col"><h4 class="mono">Also</h4><ul><li>Claude API</li><li>Google Maps &amp; Routes</li><li>Stripe &amp; Paystack</li><li>Git &amp; GitHub</li><li>Unity, Unreal, Roblox</li></ul></div>
+          <div class="col"><h3 class="mono">Frontend</h3><ul><li>TypeScript</li><li>React</li><li>Vite</li><li>HTML &amp; CSS</li><li>Tailwind</li></ul></div>
+          <div class="col"><h3 class="mono">Mobile</h3><ul><li>React Native / Expo</li><li>Swift / SwiftUI</li><li>Flutter / Dart</li><li>Live Activities</li><li>App signing &amp; release</li></ul></div>
+          <div class="col"><h3 class="mono">Backend &amp; data</h3><ul><li>Node.js</li><li>PostgreSQL</li><li>Supabase</li><li>REST APIs</li><li>Vercel &amp; Netlify</li></ul></div>
+          <div class="col"><h3 class="mono">Also</h3><ul><li>Claude API</li><li>Google Maps &amp; Routes</li><li>Stripe &amp; Paystack</li><li>Git &amp; GitHub</li><li>Unity, Unreal, Roblox</li></ul></div>
         </div>
       </div>
     </div>
